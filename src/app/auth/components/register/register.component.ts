@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Store } from '@ngrx/store';
-import { registerAction } from '../../store/auth.action';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { select, Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { register } from '../../store/auth.action';
+import { isSubmittingSelector } from '../../store/auth.selectors';
 
 @Component({
   selector: 'mdc-register',
@@ -10,11 +12,14 @@ import { registerAction } from '../../store/auth.action';
 })
 export class RegisterComponent implements OnInit {
   authForm: FormGroup;
+  isSubmitting$: Observable<boolean>;
+
   constructor(private fb: FormBuilder,
     private store: Store) { }
 
   ngOnInit(): void {
     this.initForm();
+    this.initializeValues();
   }
 
   initForm(): void {
@@ -26,8 +31,14 @@ export class RegisterComponent implements OnInit {
     });
   }
 
+  initializeValues(): void {
+    this.isSubmitting$ = this.store.pipe(
+      select(isSubmittingSelector)
+    );
+  }
+
   onSubmit() {
     console.log('submitted', this, this.authForm.value);
-    this.store.dispatch(registerAction(this.authForm.value));
+    this.store.dispatch(register(this.authForm.value));
   }
 }

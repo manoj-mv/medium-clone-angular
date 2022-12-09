@@ -1,0 +1,25 @@
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { map, Observable } from 'rxjs';
+import { currentUserInterface } from 'src/app/sahred/types/currentuser.interface';
+import { environment } from 'src/environments/environment';
+import { AuthResponseInterface } from '../types/auth-response.interface';
+
+import { RegisterRequestInterface } from '../types/register-request.interface';
+
+
+@Injectable({
+  providedIn: 'root'
+})
+export class AuthService {
+  constructor(
+    private http: HttpClient
+  ) { }
+
+  register(data: RegisterRequestInterface): Observable<currentUserInterface> {
+    const url = environment.apiUrl + '/users';
+    return this.http.post<AuthResponseInterface>(url, data).pipe(map(resp => {
+      return resp.user
+    }));
+  }
+}
