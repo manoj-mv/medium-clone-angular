@@ -7,7 +7,8 @@
         <p class="text-xs-center">
           <a [routerLink]="['/login']">Have an account?</a>
         </p>
-        errors here
+        <mdc-backend-errors *ngIf="validationErros$ | async"
+          [validationErros]="validationErros$ | async"></mdc-backend-errors>
         <form [formGroup]="authForm" (ngSubmit)="onSubmit()">
           <fieldset class="form-group">
             <input type="text" class="form-control form-control-lg" placeholder="Username" formControlName="username">

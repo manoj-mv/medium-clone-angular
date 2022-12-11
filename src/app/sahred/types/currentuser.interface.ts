@@ -1,7 +1,10 @@
 export interface currentUserInterface {
-    "email": string;
+    "updatedAt": string;
+    "createdAt": string;
+    "bio": string | null;
+    "image": string | null;
     "username": string;
-    "bio": null | string;
-    "image": string;
+    "email": string;
+    "id": string;
     "token": string;
 }

@@ -6,6 +6,9 @@ import { StoreModule } from '@ngrx/store';
 import { authFeatureKey, authReducer } from './store/auth.reducer';
 import { RegisterComponent } from './components/register/register.component';
 import { AuthRoutingModule } from './auth.routing.module';
+import { EffectsModule } from '@ngrx/effects';
+import { RegisterEffects } from './store/effects/register.effects';
+import { BackendErrorModule } from '../shared/modules/backend-errors.module';
 
 
 
@@ -17,7 +20,9 @@ import { AuthRoutingModule } from './auth.routing.module';
     CommonModule,
     AuthRoutingModule,
     ReactiveFormsModule,
-    StoreModule.forFeature(authFeatureKey, authReducer)
+    StoreModule.forFeature(authFeatureKey, authReducer),
+    EffectsModule.forFeature([RegisterEffects]),
+    BackendErrorModule
   ]
 })
 export class AuthModule { }
