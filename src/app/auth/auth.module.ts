@@ -9,19 +9,22 @@ import { AuthRoutingModule } from './auth.routing.module';
 import { EffectsModule } from '@ngrx/effects';
 import { RegisterEffects } from './store/effects/register.effects';
 import { BackendErrorModule } from '../shared/modules/backend-errors.module';
+import { LoginEffects } from './store/effects/login.effects';
+import { LoginComponent } from './components/login/login.component';
 
 
 
 @NgModule({
   declarations: [
-    RegisterComponent
+    RegisterComponent,
+    LoginComponent
   ],
   imports: [
     CommonModule,
     AuthRoutingModule,
     ReactiveFormsModule,
     StoreModule.forFeature(authFeatureKey, authReducer),
-    EffectsModule.forFeature([RegisterEffects]),
+    EffectsModule.forFeature([RegisterEffects, LoginEffects]),
     BackendErrorModule
   ]
 })

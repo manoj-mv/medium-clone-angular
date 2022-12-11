@@ -4,6 +4,7 @@ import { map, Observable } from 'rxjs';
 import { currentUserInterface } from 'src/app/sahred/types/currentuser.interface';
 import { environment } from 'src/environments/environment';
 import { AuthResponseInterface } from '../types/auth-response.interface';
+import { LoginRequestInterface } from '../types/login.request.interface';
 
 import { RegisterRequestInterface } from '../types/register-request.interface';
 
@@ -16,10 +17,18 @@ export class AuthService {
     private http: HttpClient
   ) { }
 
+  getUser(response: AuthResponseInterface) {
+    return response.user;
+  }
   register(data: RegisterRequestInterface): Observable<currentUserInterface> {
     const url = environment.apiUrl + '/users';
-    return this.http.post<AuthResponseInterface>(url, data).pipe(map(resp => {
-      return resp.user
-    }));
+    return this.http.post<AuthResponseInterface>(url, data).pipe(map(this.getUser));
+  }
+
+  login(data: LoginRequestInterface) {
+    const url = environment.apiUrl + '/users/login';
+    return this.http.post<AuthResponseInterface>(url, data).pipe(
+      map(this.getUser)
+    )
   }
 }
