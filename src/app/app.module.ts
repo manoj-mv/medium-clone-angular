@@ -9,9 +9,6 @@ import { AppComponent } from './app.component';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { HttpClientModule } from '@angular/common/http';
 import { EffectsModule } from '@ngrx/effects';
-import { BackendErrorsComponent } from './shared/components/backend-errors/backend-errors.component';
-import { LoginComponent } from './components/login/login.component';
-
 @NgModule({
   declarations: [
     AppComponent,

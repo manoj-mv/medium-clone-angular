@@ -4,7 +4,7 @@ import { Router } from "@angular/router";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { catchError, map, of, switchMap, tap } from "rxjs";
 
-import { currentUserInterface } from "src/app/sahred/types/currentuser.interface";
+import { currentUserInterface } from "src/app/types/currentuser.interface";
 import { PersistanceService } from "src/app/shared/services/persistance.service";
 import { AuthService } from "../../services/auth.service";
 import * as AuthActions from "../actions/login.action";
@@ -35,7 +35,7 @@ export class LoginEffects {
                     this.router.navigate(['/']);
                 }
             )
-        )
+        ), { dispatch: false }
     )
 
 

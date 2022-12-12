@@ -12,10 +12,28 @@ export class BackendErrorsComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.errorMessages = Object.keys(this.validationErrosInput).map((name: string) => {
-      const messages = this.validationErrosInput[name].join(' ');
+    this.errorMessages = Object.keys(this.validationErrosInput).map((key: string) => {
+      let messages;
+      for (let txt of this.validationErrosInput[key]) {
+        messages = this.getErrorMessages(txt, key);
+      }
       return messages;
     })
+  }
+
+  getFirstWord(txt: string) {
+    return txt.split(" ")[0];
+  }
+
+  getErrorMessages(txt: string, key: string) {
+    let firstWord = this.getFirstWord(txt);
+    let messages;
+    if (key.toLowerCase() === firstWord.toLowerCase()) {
+      messages = this.validationErrosInput[key].join(' ');
+    } else {
+      messages = `${key} ${txt}`;
+    }
+    return messages;
   }
 
 }

@@ -15,8 +15,6 @@ export const authFeatureKey = "auth";
 export const authReducer = createReducer(
     initialState,
     on(RegisterActions.register, (state, action): AuthState => {
-        console.log('reached');
-
         return {
             ...state,
             isSubmitting: true,

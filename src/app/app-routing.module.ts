@@ -4,7 +4,7 @@ import { AppComponent } from './app.component';
 
 const routes: Routes = [
   {
-    path: 'register', loadChildren: () => import('src/app/auth/auth.module').then(module => module.AuthModule),
+    path: '', loadChildren: () => import('src/app/auth/auth.module').then(module => module.AuthModule),
   }
 ];
 
