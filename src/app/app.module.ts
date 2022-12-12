@@ -9,6 +9,8 @@ import { AppComponent } from './app.component';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { HttpClientModule } from '@angular/common/http';
 import { EffectsModule } from '@ngrx/effects';
+import { TopBarModule } from './shared/modules/top-bar/top-bar.module';
+import { AuthModule } from './auth/auth.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,7 +22,10 @@ import { EffectsModule } from '@ngrx/effects';
     StoreModule.forRoot({}, {}),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     StoreRouterConnectingModule.forRoot(),
-    EffectsModule.forRoot([])
+    EffectsModule.forRoot([]),
+
+    AuthModule,
+    TopBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
