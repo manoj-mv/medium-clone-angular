@@ -7,10 +7,12 @@ import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { EffectsModule } from '@ngrx/effects';
+
 import { TopBarModule } from './shared/modules/top-bar/top-bar.module';
 import { AuthModule } from './auth/auth.module';
+import { AuthInterceptorService } from './shared/services/auth-interceptor.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +29,13 @@ import { AuthModule } from './auth/auth.module';
     AuthModule,
     TopBarModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

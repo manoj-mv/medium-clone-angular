@@ -11,6 +11,7 @@ import { RegisterEffects } from './store/effects/register.effects';
 import { BackendErrorModule } from '../shared/modules/backend-error/backend-errors.module';
 import { LoginEffects } from './store/effects/login.effects';
 import { LoginComponent } from './components/login/login.component';
+import { GetCurrentUserEffects } from './store/effects/get-current-user.effect';
 
 
 
@@ -24,7 +25,13 @@ import { LoginComponent } from './components/login/login.component';
     AuthRoutingModule,
     ReactiveFormsModule,
     StoreModule.forFeature(authFeatureKey, authReducer),
-    EffectsModule.forFeature([RegisterEffects, LoginEffects]),
+    EffectsModule.forFeature(
+      [
+        RegisterEffects,
+        LoginEffects,
+        GetCurrentUserEffects
+      ]
+    ),
     BackendErrorModule
   ]
 })
