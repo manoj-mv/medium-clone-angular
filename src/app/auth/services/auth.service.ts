@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
-import { currentUserInterface } from 'src/app/types/currentuser.interface';
+import { currentUserInterface } from 'src/app/shared/types/currentuser.interface';
 import { environment } from 'src/environments/environment';
 import { AuthResponseInterface } from '../types/auth-response.interface';
 import { LoginRequestInterface } from '../types/login.request.interface';

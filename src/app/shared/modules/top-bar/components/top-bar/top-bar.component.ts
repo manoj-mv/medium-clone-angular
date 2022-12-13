@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { currentUserSelector, isAnonymousUser, isUserLogedInSelector } from 'src/app/auth/store/auth.selectors';
-import { currentUserInterface } from 'src/app/types/currentuser.interface';
+import { currentUserInterface } from 'src/app/shared/types/currentuser.interface';
 
 @Component({
   selector: 'mdc-top-bar',

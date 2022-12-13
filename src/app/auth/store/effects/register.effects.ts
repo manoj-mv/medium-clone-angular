@@ -3,7 +3,7 @@ import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { catchError, map, of, switchMap, tap } from "rxjs";
 import * as RegisterActions from '../actions/register.action';
 import { AuthService } from 'src/app/auth/services/auth.service';
-import { currentUserInterface } from "src/app/types/currentuser.interface";
+import { currentUserInterface } from "src/app/shared/types/currentuser.interface";
 import { PersistanceService } from "src/app/shared/services/persistance.service";
 import { Router } from "@angular/router";
 

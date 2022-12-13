@@ -1,5 +1,5 @@
 import { createAction, props } from "@ngrx/store";
-import { currentUserInterface } from "src/app/types/currentuser.interface";
+import { currentUserInterface } from "src/app/shared/types/currentuser.interface";
 import { BackendErrorInterface } from "../../types/backen-errors.interface";
 
 import { AuthActionTypes } from "../action-types";
