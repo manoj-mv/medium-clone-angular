@@ -7,6 +7,8 @@ import { GetFeedEffects } from './store/effects/get-feed.effect';
 import { StoreModule } from '@ngrx/store';
 import { feedFeatureKey, feedReducer } from './store/feed.reducer';
 import { RouterModule } from '@angular/router';
+import { ErrorMessageModule } from '../error-messages/error-message.module';
+import { LoadingModule } from '../loading/loading.module';
 
 
 @NgModule({
@@ -18,6 +20,9 @@ import { RouterModule } from '@angular/router';
     RouterModule,
     EffectsModule.forFeature([GetFeedEffects]),
     StoreModule.forFeature(feedFeatureKey, feedReducer),
+
+    ErrorMessageModule,
+    LoadingModule
   ],
   exports: [
     FeedComponent
