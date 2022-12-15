@@ -24,4 +24,6 @@
         </a>
     </div>
     PAGINATION
+    <mdc-pagination [total]="(feed$ | async).articlesCount" [limit]="limit" [currentPage]="currentPage" [url]="baseUrl">
+    </mdc-pagination>
 </div>

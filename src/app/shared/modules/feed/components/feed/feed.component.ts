@@ -1,6 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, ParamMap, Router, UrlSerializer } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import queryString from 'query-string';
+import { Observable, Subscription } from 'rxjs';
+
+import { environment } from 'src/environments/environment';
 import { getFeed } from '../../store/actions/get-feed.action';
 import * as FeedSelectors from '../../store/feed.selectors';
 import { feedResponseInterface } from '../../types/feed-response.interface';
@@ -10,24 +14,40 @@ import { feedResponseInterface } from '../../types/feed-response.interface';
   templateUrl: './feed.component.html',
   styleUrls: ['./feed.component.scss']
 })
-export class FeedComponent implements OnInit {
+export class FeedComponent implements OnInit, OnDestroy {
   @Input('apiUrl') apiUrlProps: string;
   isLoading$: Observable<boolean>;
   error$: Observable<string | null>;
   feed$: Observable<feedResponseInterface | null>;
   defaultUserImage = 'assets/images/user.svg';
+  limit = environment.limit;
+  baseUrl: string;
+  currentPage: number;
+  queryParamSubscription: Subscription;
+
   constructor(
-    private store: Store
+    private store: Store,
+    private router: Router,
+    private route: ActivatedRoute,
   ) { }
 
   ngOnInit(): void {
-    this.fetchData();
+    this.initializeListeners();
     this.initializeValues();
   }
 
   fetchData(): void {
     if (this.apiUrlProps) {
-      this.store.dispatch(getFeed({ url: this.apiUrlProps }));
+      const offset = this.currentPage * this.limit - this.limit;
+      const parsedUrl = queryString.parseUrl(this.apiUrlProps);
+      const stringifiedParams = queryString.stringify({
+        limit: this.limit,
+        offset: offset,
+        ...parsedUrl.query
+      });
+      const apiUrlWithParams = `${parsedUrl.url}?${stringifiedParams}`;
+      console.log(apiUrlWithParams);
+      this.store.dispatch(getFeed({ url: apiUrlWithParams }));
     }
   }
 
@@ -35,6 +55,22 @@ export class FeedComponent implements OnInit {
     this.isLoading$ = this.store.select(FeedSelectors.isLoadingSelector);
     this.error$ = this.store.select(FeedSelectors.errorSelector);
     this.feed$ = this.store.select(FeedSelectors.feedSelector);
+    this.baseUrl = this.router.url.split('?')[0];
   }
 
+  initializeListeners(): void {
+    this.queryParamSubscription = this.route.queryParamMap.subscribe(
+      (params: ParamMap) => {
+        this.currentPage = Number(params.get('page')) || 1;
+        console.log(this.currentPage);
+        this.fetchData();
+      }
+    );
+  }
+
+  ngOnDestroy(): void {
+    if (this.queryParamSubscription) {
+      this.queryParamSubscription.unsubscribe();
+    }
+  }
 }
