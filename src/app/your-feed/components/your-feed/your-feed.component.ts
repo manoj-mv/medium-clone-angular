@@ -1,14 +1,14 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'mdc-global-feed',
-  templateUrl: './global-feed.component.html',
-  styleUrls: ['./global-feed.component.scss']
+  selector: 'mdc-your-feed',
+  templateUrl: './your-feed.component.html',
+  styleUrls: ['./your-feed.component.scss']
 })
-export class GlobalFeedComponent implements OnInit, OnDestroy {
-  apiUrl = '/articles';
+export class YourFeedComponent implements OnInit, OnDestroy {
+  apiUrl = '/articles/feed';
   tagName: string;
   routeSubscription: Subscription;
 
@@ -17,13 +17,9 @@ export class GlobalFeedComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this.initializeListeners()
-  }
-
-  initializeListeners(): void {
     this.routeSubscription = this.route.paramMap.subscribe(
-      paramMap => {
-        this.tagName = paramMap.get('slug');
+      (params: ParamMap) => {
+        this.tagName = params.get('slug');
       }
     )
   }

@@ -14,6 +14,7 @@ import { TopBarModule } from './shared/modules/top-bar/top-bar.module';
 import { AuthModule } from './auth/auth.module';
 import { AuthInterceptorService } from './shared/services/auth-interceptor.service';
 import { GlobalFeedModule } from './global-feed/global-feed.module';
+import { TagFeedModule } from './tag-feed/tag-feed.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +30,8 @@ import { GlobalFeedModule } from './global-feed/global-feed.module';
 
     AuthModule,
     TopBarModule,
-    GlobalFeedModule
+    GlobalFeedModule,
+    TagFeedModule
   ],
   providers: [
     {
