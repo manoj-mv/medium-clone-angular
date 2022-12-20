@@ -8,11 +8,14 @@ import { articleFeatureKey } from "src/app/article/store/article.reducer";
 import { ArticleState } from "src/app/article/types/aritcle-state.interface";
 import { CreateArticleFeatureKey } from "src/app/create-article/store/create-article.reducer";
 import { CreateArticleState } from "src/app/create-article/types/create-article-state.interface";
+import { EditArticleFeatureKey } from "src/app/edit-article/store/edit-article.reducer";
+import { EditArticleStateInterface } from "src/app/edit-article/types/edit-article-state.interface";
 
 export interface AppStateInterface {
   [authFeatureKey]: AuthState;
   [feedFeatureKey]: FeedState;
   [popularTagsFeatureKey]: PopularTagsStateInterface;
   [articleFeatureKey]: ArticleState;
-  [CreateArticleFeatureKey]: CreateArticleState
+  [CreateArticleFeatureKey]: CreateArticleState;
+  [EditArticleFeatureKey]: EditArticleStateInterface;
 }

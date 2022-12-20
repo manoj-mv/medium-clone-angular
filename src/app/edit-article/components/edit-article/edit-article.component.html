@@ -1,0 +1,4 @@
+<mdc-loading *ngIf="isLoading$ | async"></mdc-loading>
+<mdc-article-form *ngIf="initialValues$ | async as initialValues" [initialValues]="initialValues"
+  [isSubmitting]="isSubmitting$ | async" [errors]="validationErrors$ | async"
+  (articleSubmit)="onSubmit($event)"></mdc-article-form>

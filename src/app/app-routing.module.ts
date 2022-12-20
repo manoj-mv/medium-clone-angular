@@ -14,6 +14,10 @@ const routes: Routes = [
   },
 
   {
+    path: 'articles/:slug/edit', loadChildren: () => import('src/app/edit-article/edit-article.module').then(m => m.UpdateArticleModule)
+  },
+
+  {
     path: 'articles/:slug', loadChildren: () => import('src/app/article/article.module').then(m => m.ArticleModule)
   },
 
