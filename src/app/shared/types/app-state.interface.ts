@@ -6,10 +6,13 @@ import { popularTagsFeatureKey } from "../modules/popular-tags/store/popular-tag
 import { PopularTagsStateInterface } from "../modules/popular-tags/types/popular-tags-state.interface";
 import { articleFeatureKey } from "src/app/article/store/article.reducer";
 import { ArticleState } from "src/app/article/types/aritcle-state.interface";
+import { CreateArticleFeatureKey } from "src/app/create-article/store/create-article.reducer";
+import { CreateArticleState } from "src/app/create-article/types/create-article-state.interface";
 
 export interface AppStateInterface {
   [authFeatureKey]: AuthState;
   [feedFeatureKey]: FeedState;
   [popularTagsFeatureKey]: PopularTagsStateInterface;
-  [articleFeatureKey]: ArticleState
+  [articleFeatureKey]: ArticleState;
+  [CreateArticleFeatureKey]: CreateArticleState
 }

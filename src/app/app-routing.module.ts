@@ -8,8 +8,16 @@ const routes: Routes = [
   },
 
   {
+    path: 'articles/new', loadChildren: () => import('src/app/create-article/create-article.module').then(
+      m => m.CreateArticleModule
+    ), pathMatch: "full"
+  },
+
+  {
     path: 'articles/:slug', loadChildren: () => import('src/app/article/article.module').then(m => m.ArticleModule)
-  }
+  },
+
+
 ];
 
 @NgModule({

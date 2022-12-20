@@ -46,7 +46,10 @@ export class ArticleComponent implements OnInit {
       [this.article$, this.store.select(currentUserSelector)]).pipe(
         map(([article, currentUser]) => {
           console.log(article, currentUser);
-          if (!article && !currentUser) return false;
+
+          if (!article || !currentUser) {
+            return false;
+          }
           return article.author.username === currentUser.username;
         })
       );

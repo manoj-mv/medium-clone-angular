@@ -1,7 +1,6 @@
 import { createReducer, on } from "@ngrx/store";
 import { ArticleState } from "../types/aritcle-state.interface";
 import * as GetArticleActions from "./actions/article.actions";
-import { state } from "@angular/animations";
 import { routerNavigationAction } from "@ngrx/router-store";
 
 

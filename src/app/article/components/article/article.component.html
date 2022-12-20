@@ -14,7 +14,7 @@
             {{ article.createdAt | date }}
           </span>
         </div>
-        <span *ngIf="!(isAuthor$ | async)">
+        <span *ngIf="(isAuthor$ | async)">
           <a [routerLink]="['/articles', article.slug,'edit']" class="btn btn-sm btn-outline-secondary">
             <i class="ion-edit"></i> Edit Article
           </a>
