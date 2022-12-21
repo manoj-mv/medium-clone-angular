@@ -12,6 +12,8 @@ import { BackendErrorModule } from '../shared/modules/backend-error/backend-erro
 import { LoginEffects } from './store/effects/login.effects';
 import { LoginComponent } from './components/login/login.component';
 import { GetCurrentUserEffects } from './store/effects/get-current-user.effect';
+import { UpdateCurrentUserEffects } from './store/effects/update-current-user.effect';
+import { LogoutEffect } from './store/effects/logout.effect';
 
 
 
@@ -29,7 +31,9 @@ import { GetCurrentUserEffects } from './store/effects/get-current-user.effect';
       [
         RegisterEffects,
         LoginEffects,
-        GetCurrentUserEffects
+        GetCurrentUserEffects,
+        UpdateCurrentUserEffects,
+        LogoutEffect
       ]
     ),
     BackendErrorModule

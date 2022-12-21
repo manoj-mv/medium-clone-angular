@@ -10,6 +10,8 @@ import { CreateArticleFeatureKey } from "src/app/create-article/store/create-art
 import { CreateArticleState } from "src/app/create-article/types/create-article-state.interface";
 import { EditArticleFeatureKey } from "src/app/edit-article/store/edit-article.reducer";
 import { EditArticleStateInterface } from "src/app/edit-article/types/edit-article-state.interface";
+import { SettingsFeatureKey } from "src/app/settings/store/settings.reducer";
+import { SettingsState } from "src/app/settings/types/settings-state.interface";
 
 export interface AppStateInterface {
   [authFeatureKey]: AuthState;
@@ -18,4 +20,5 @@ export interface AppStateInterface {
   [articleFeatureKey]: ArticleState;
   [CreateArticleFeatureKey]: CreateArticleState;
   [EditArticleFeatureKey]: EditArticleStateInterface;
+  [SettingsFeatureKey]: SettingsState
 }

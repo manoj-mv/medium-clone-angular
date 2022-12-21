@@ -7,7 +7,7 @@ import { BackendErrorInterface } from 'src/app/auth/types/backen-errors.interfac
   styleUrls: ['./backend-errors.component.scss']
 })
 export class BackendErrorsComponent implements OnInit {
-  @Input('validationErros') validationErrosInput: BackendErrorInterface;
+  @Input('validationErros') validationErrosInput: BackendErrorInterface | null;
   errorMessages: string[];
   constructor() { }
 
