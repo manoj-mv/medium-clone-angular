@@ -43,13 +43,9 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log('submitted', this,);
     const request: RegisterRequestInterface = {
       user: this.authForm.value
     }
-    console.log(request);
-
     this.store.dispatch(register(request));
-
   }
 }

@@ -43,14 +43,10 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log('submitted');
     const request: LoginRequestInterface = {
       user: this.loginForm.value
     }
-    console.log(request);
-
     this.store.dispatch(login({ payload: request }));
-
   }
 
 }

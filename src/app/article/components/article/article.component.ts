@@ -45,8 +45,6 @@ export class ArticleComponent implements OnInit {
     this.isAuthor$ = combineLatest(
       [this.article$, this.store.select(currentUserSelector)]).pipe(
         map(([article, currentUser]) => {
-          console.log(article, currentUser);
-
           if (!article || !currentUser) {
             return false;
           }

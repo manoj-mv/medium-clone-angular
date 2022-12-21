@@ -11,6 +11,7 @@ import { ErrorMessageModule } from '../error-messages/error-message.module';
 import { LoadingModule } from '../loading/loading.module';
 import { PaginationModule } from '../pagination/pagination.module';
 import { TagListModule } from '../tag-list/tag-list.module';
+import { FavoritesModule } from '../favorites/favorites.module';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { TagListModule } from '../tag-list/tag-list.module';
     ErrorMessageModule,
     LoadingModule,
     PaginationModule,
-    TagListModule
+    TagListModule,
+    FavoritesModule
   ],
   exports: [
     FeedComponent

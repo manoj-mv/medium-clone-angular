@@ -14,8 +14,6 @@ export class CreateArticleEffect {
       ofType(CreateArticleActions.createArticle),
       switchMap(
         action => {
-          console.log(action.article);
-
           return this.createArticleService.createArtice(action.article).pipe(
             map((article) => CreateArticleActions.createArticleSuccess({ article })),
             catchError((errorRes: HttpErrorResponse) => of(CreateArticleActions.createArticleFailure({ errors: errorRes.error.errors })))

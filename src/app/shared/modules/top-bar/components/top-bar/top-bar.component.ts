@@ -16,8 +16,6 @@ export class TopBarComponent implements OnInit {
   defaultImage = 'assets/images/user.svg';
 
   ngOnInit(): void {
-    console.log('test');
-
     this.initializeValues();
   }
 
@@ -29,8 +27,5 @@ export class TopBarComponent implements OnInit {
 
   constructor(
     private store: Store
-  ) {
-    console.log('constructor');
-
-  }
+  ) { }
 }

@@ -37,7 +37,6 @@ export class CreateArticleComponent implements OnInit {
   }
 
   onSubmit(articleFormData: any): void {
-    console.log(articleFormData);
     const formData: ArticleInputInterface = {
       ...articleFormData,
       tagList: articleFormData.tagList.split(' ')

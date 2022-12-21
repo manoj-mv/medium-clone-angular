@@ -13,7 +13,8 @@
         <span class="date">{{ article.createdAt}}</span>
       </div>
       <div class="pull-xs-right">
-        ADD TO FAVOURITES
+        <mdc-add-remove-favorites *ngIf="isLoggedIn$ | async" [isFavorited]="article.favorited"
+          [articleSlug]="article.slug" [favoritesCount]="article.favoritesCount"></mdc-add-remove-favorites>
       </div>
     </div>
     <a [routerLink]="['/articles',article.slug]" class="preview-link">

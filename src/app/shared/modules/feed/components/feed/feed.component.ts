@@ -8,6 +8,7 @@ import { environment } from 'src/environments/environment';
 import { getFeed } from '../../store/actions/get-feed.action';
 import * as FeedSelectors from '../../store/feed.selectors';
 import { feedResponseInterface } from '../../types/feed-response.interface';
+import { isUserLogedInSelector } from 'src/app/auth/store/auth.selectors';
 
 @Component({
   selector: 'mdc-feed',
@@ -24,6 +25,7 @@ export class FeedComponent implements OnInit, OnDestroy {
   baseUrl: string;
   currentPage: number;
   queryParamSubscription: Subscription;
+  isLoggedIn$: Observable<boolean>;
 
   constructor(
     private store: Store,
@@ -46,7 +48,6 @@ export class FeedComponent implements OnInit, OnDestroy {
         ...parsedUrl.query
       });
       const apiUrlWithParams = `${parsedUrl.url}?${stringifiedParams}`;
-      console.log(apiUrlWithParams);
       this.store.dispatch(getFeed({ url: apiUrlWithParams }));
     }
   }
@@ -56,13 +57,14 @@ export class FeedComponent implements OnInit, OnDestroy {
     this.error$ = this.store.select(FeedSelectors.errorSelector);
     this.feed$ = this.store.select(FeedSelectors.feedSelector);
     this.baseUrl = this.router.url.split('?')[0];
+
+    this.isLoggedIn$ = this.store.select(isUserLogedInSelector);
   }
 
   initializeListeners(): void {
     this.queryParamSubscription = this.route.queryParamMap.subscribe(
       (params: ParamMap) => {
         this.currentPage = Number(params.get('page')) || 1;
-        console.log(this.currentPage);
         this.fetchData();
       }
     );
