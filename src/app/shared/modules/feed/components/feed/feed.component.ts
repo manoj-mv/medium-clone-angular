@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router, UrlSerializer } from '@angular/router';
 import { Store } from '@ngrx/store';
 import queryString from 'query-string';
@@ -15,7 +15,7 @@ import { isUserLogedInSelector } from 'src/app/auth/store/auth.selectors';
   templateUrl: './feed.component.html',
   styleUrls: ['./feed.component.scss']
 })
-export class FeedComponent implements OnInit, OnDestroy {
+export class FeedComponent implements OnInit, OnDestroy, OnChanges {
   @Input('apiUrl') apiUrlProps: string;
   isLoading$: Observable<boolean>;
   error$: Observable<string | null>;
@@ -36,6 +36,15 @@ export class FeedComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.initializeListeners();
     this.initializeValues();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    const isApiUrlInputChanged = !changes['apiUrlProps'].firstChange && (changes['apiUrlProps'].currentValue != changes['apiUrlProps'].previousValue);
+    if (isApiUrlInputChanged) {
+      this.fetchData();
+    } else {
+
+    }
   }
 
   fetchData(): void {

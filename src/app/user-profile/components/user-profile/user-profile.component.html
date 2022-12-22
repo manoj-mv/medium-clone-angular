@@ -1,0 +1,44 @@
+<div class="profile-page" *ngIf="userProfile$ | async as user">
+  <div class="user-info">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-md-10 offset-md-1"><img class="user-img" [src]="user.image">
+          <h4>{{user.username}}</h4>
+          <p>{{user?.bio}}</p>
+          FOLLOW BUTTON
+          <!-- <app-follow-button hidden=""><button class="btn btn-sm action-btn btn-outline-secondary"><i
+                class="ion-plus-round"></i> &nbsp; Follow test100@
+            </button></app-follow-button> -->
+          <a *ngIf="isCurrentUserProfile$ |async" class="btn btn-sm btn-outline-secondary action-btn"
+            [routerLink]="['/settings']"><i class="ion-gear-a"></i>
+            Edit
+            Profile Settings </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-md-10 offset-md-1">
+        <!-- <mdc-feed-toggler></mdc-feed-toggler> -->
+        <div class="articles-toggle">
+          <ul class="nav nav-pills outline-active">
+            <li class="nav-item">
+              <a [routerLink]="['/profiles',user.username]" routerLinkActive="active"
+                [routerLinkActiveOptions]="{exact: true}" class="nav-link">{{(isCurrentUserProfile$ | async) ? 'My Post'
+                : (user.username +"'s Posts") }}</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['/profiles',user.username, 'favorites']" routerLinkActive="active"
+                [routerLinkActiveOptions]="{exact: true}">
+                Favorited Posts </a>
+            </li>
+          </ul>
+        </div>
+        <pre>{{getApiUrl() }}</pre>
+        <!-- <router-outlet></router-outlet> -->
+        <mdc-feed [apiUrl]="getApiUrl()"></mdc-feed>
+      </div>
+    </div>
+  </div>
+</div>
